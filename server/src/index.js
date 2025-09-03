@@ -2,9 +2,19 @@ import express from "express";
 import mongoose from "mongoose";
 import config from "../config.js";
 import dotenv from "dotenv";
+import cors from "cors";
 import connectDB from "./config/db.js";
 dotenv.config();
 const app = express();
+// ✅ Enable CORS
+app.use(
+  cors({
+    origin: "http://localhost:5173", // allow client
+    credentials: true, // if you use cookies/sessions later
+  })
+);
+
+app.use(express.json());
 
 // Connect to MongoDB
 connectDB();
