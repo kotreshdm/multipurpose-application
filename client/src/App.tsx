@@ -1,34 +1,16 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { Container } from "react-bootstrap";
+import AppNavBar from "./components/app-nav-bar/AppNavBar";
 
 function App() {
-  const [message, setMessage] = useState({
-    status: "Loading...",
-    db: "loadding...",
-    timestamp: "loadding..",
-    uptime: "loading....",
-  });
-
-  useEffect(() => {
-    setTimeout(() => {
-      axios
-        .get("http://localhost:5000/api/health")
-        .then((res) => {
-          console.log(res);
-          setMessage(res.data);
-        })
-        .catch((err) => console.error(err));
-    }, 2000);
-  }, []);
-
   return (
-    <div>
-      <h1>Client + Server Demo</h1>
-      <p>Backend says: {message.status}</p>
-      <p>Backend says: {message.db}</p>
-      <p>Backend says: {message.timestamp}</p>
-      <p>Backend says: {message.uptime}</p>
-    </div>
+    <Container fluid className='App'>
+      <AppNavBar />
+      <Container>
+        <header className='App-header'></header>
+        <h1>App This is a s</h1>
+        <p>This is a simple React application with Bootstrap.</p>
+      </Container>
+    </Container>
   );
 }
 
