@@ -1,0 +1,25 @@
+diff --git a/node_modules/bootstrap/scss/_functions.scss b/node_modules/bootstrap/scss/_functions.scss
+index 59d431a..5b6dfc4 100644
+--- a/node_modules/bootstrap/scss/_functions.scss
++++ b/node_modules/bootstrap/scss/_functions.scss
+@@ -3,7 +3,6 @@
+ // Utility mixins and functions for evaluating source code across our variables, maps, and mixins.
+ 
+ // Ascending
+-// Used to evaluate Sass maps like our grid breakpoints.
+ @mixin _assert-ascending($map, $map-name) {
+   $prev-key: null;
+   $prev-num: null;
+@@ -182,9 +181,9 @@ $_luminance-list: .0008 .001 .0011 .0013 .0015 .0017 .002 .0022 .0025 .0027 .003
+ // See https://www.w3.org/TR/WCAG/#dfn-contrast-ratio
+ @function luminance($color) {
+   $rgb: (
+-    "r": red($color),
+-    "g": green($color),
+-    "b": blue($color)
++    "r": color.channel($color, "red", $space: rgb),
++    "g": color.channel($color, "green", $space: rgb),
++    "b": color.channel($color, "blue", $space: rgb)
+   );
+ 
+   @each $name, $value in $rgb {

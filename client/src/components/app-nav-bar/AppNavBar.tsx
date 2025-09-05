@@ -10,10 +10,9 @@ function AppNavbar() {
       darkMode ? "dark" : "light"
     );
   }, [darkMode]);
-
   return (
     <Navbar expand='lg' className='shadow-sm'>
-      <Container fluid>
+      <Container className='p-0'>
         <Navbar.Brand href='#'>My App</Navbar.Brand>
         <Navbar.Toggle aria-controls='main-navbar' />
         <Navbar.Collapse id='main-navbar'>
@@ -22,12 +21,15 @@ function AppNavbar() {
             <Nav.Link href='#features'>Features</Nav.Link>
             <Nav.Link href='#pricing'>Pricing</Nav.Link>
           </Nav>
-          <Button
-            variant={darkMode ? "dark" : "light"}
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? "☀️ Light" : "🌙 Dark"}
-          </Button>
+          <Nav className='mr-auto'>
+            <Nav.Link href='#login'>Login</Nav.Link>
+            <Button
+              variant={darkMode ? "dark" : "light"}
+              onClick={() => setDarkMode(!darkMode)}
+            >
+              {darkMode ? "☀️ " : "🌙 "}
+            </Button>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
