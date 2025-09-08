@@ -1,18 +1,29 @@
 import { Container } from "react-bootstrap";
 import AppNavBar from "./components/app-nav-bar/AppNavBar";
 import React, { useEffect, useState } from "react";
-import api from "./api/axios";
+import { userService } from "./services/userService";
 
 function App() {
   const [data, setData] = useState(null);
   useEffect(() => {
-    const data = async () => {
-      const res = await api("http://localhost:5000/api/health");
-      setData(res.data.message);
-    };
-    data();
-  }, []);
+    const run = async () => {
+      try {
+        const registered = await userService.register({
+          name: "Kotresh DM",
+          email: "kotresh@example.com",
+          password: "123456",
+        });
+        console.log("✅ Registered:", registered);
 
+        const profile = await userService.profile();
+        console.log("👤 Profile:", profile);
+      } catch (err: any) {
+        console.error("❌ API Error:", err.response?.data || err.message);
+      }
+    };
+
+    run();
+  }, []);
   return (
     <React.Fragment>
       <AppNavBar />
